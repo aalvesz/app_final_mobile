@@ -1,9 +1,9 @@
-import '../app_final_mobile/lib/pages/home.dart';
-import '../app_final_mobile/lib/pages/homeworks.dart';
-import '../app_final_mobile/lib/pages/house.dart';
-import '../app_final_mobile/lib/pages/login.dart';
-import '../app_final_mobile/lib/pages/register.dart';
-import '../app_final_mobile/lib/pages/work.dart';
+import 'app_final_mobile/lib/pages/home.dart';
+import 'app_final_mobile/lib/pages/homeworks.dart';
+import 'app_final_mobile/lib/pages/house.dart';
+import 'app_final_mobile/lib/pages/login.dart';
+import 'app_final_mobile/lib/pages/register.dart';
+import 'app_final_mobile/lib/pages/work.dart';
 import 'package:flutter/material.dart';
 
 void main() {
