@@ -1,33 +1,22 @@
-import 'app_final_mobile/lib/pages/home.dart';
-import 'app_final_mobile/lib/pages/homeworks.dart';
-import 'app_final_mobile/lib/pages/house.dart';
-import 'app_final_mobile/lib/pages/login.dart';
-import 'app_final_mobile/lib/pages/register.dart';
-import 'app_final_mobile/lib/pages/work.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:app_final_mobile/pages/task_list.dart';
 
 void main() {
-  runApp(Principal());
+  runApp(ProviderScope(child: const MyApp()));
 }
 
-class Principal extends StatelessWidget {
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        primarySwatch: Colors.blue,
       ),
-      routes: {
-        '/principal': (context) => (Principal()),
-        '/home': (context) => (Home()),
-        '/homework': (context) => (Homework()),
-        '/house': (context) => (House()),
-        '/login': (context) => (Login()),
-        '/register': (context) => (Register()),
-        '/work': (context) => (Work()),
-      },
+      home: const TaskListPage(),
     );
   }
 }
