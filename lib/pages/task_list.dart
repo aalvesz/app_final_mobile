@@ -4,6 +4,7 @@ import 'package:app_final_mobile/models/task.dart';
 import 'package:app_final_mobile/providers/tasks_provider.dart';
 import 'package:app_final_mobile/providers/tasks_state.dart';
 import 'package:app_final_mobile/pages/task_edit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TaskListPage extends StatelessWidget {
   const TaskListPage({Key? key}) : super(key: key);
@@ -20,16 +21,29 @@ class DocumentosView extends ConsumerWidget {
     final state = ref.watch(tasksProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tarefas'),
+        title: const Text(
+          'Tarefas',
+          style: TextStyle(fontWeight: FontWeight.w500, color: Colors.white),
+        ),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [Color(0xffB81736), Color(0xff281737)])),
+        ),
         actions: <Widget>[
-          // desativar o botao de excluir todas as Tarefas se nao ha Tarefas
           state is TasksEmpty
               ? IconButton(
                   onPressed: null,
-                  icon: Icon(Icons.clear_all),
+                  icon: Icon(
+                    Icons.clear_all,
+                    color: Colors.white,
+                  ),
                 )
               : IconButton(
-                  icon: Icon(Icons.clear_all),
+                  icon: Icon(
+                    Icons.clear_all,
+                    color: Colors.white,
+                  ),
                   onPressed: () {
                     // excluir todas as Tarefas
                     showDialog<String>(
@@ -49,7 +63,8 @@ class DocumentosView extends ConsumerWidget {
                               ScaffoldMessenger.of(context)
                                 ..hideCurrentSnackBar()
                                 ..showSnackBar(const SnackBar(
-                                  content: Text('Tarefas excluídas com sucesso'),
+                                  content:
+                                      Text('Tarefas excluídas com sucesso'),
                                 ));
                             },
                             child: const Text('OK'),
@@ -62,14 +77,29 @@ class DocumentosView extends ConsumerWidget {
         ],
       ),
       body: _Content(),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => TaskEditPage(task: null)),
-          );
-        },
+      floatingActionButton: Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: LinearGradient(
+            colors: [Color(0xffB81736), Color(0xff281737)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => TaskEditPage(task: null)),
+            );
+          },
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
       ),
     );
   }
@@ -131,9 +161,8 @@ class _TasksList extends StatelessWidget {
                   },
                 ),
                 IconButton(
-                    icon: Icon(Icons.delete),
+                    icon: FaIcon(Icons.delete),
                     onPressed: () {
-                      // excluir Tarefa atraves do id
                       showDialog<String>(
                         context: context,
                         builder: (BuildContext context) => AlertDialog(

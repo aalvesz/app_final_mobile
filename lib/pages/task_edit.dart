@@ -43,8 +43,7 @@ class TasksEditView extends ConsumerWidget {
           ..showSnackBar(const SnackBar(
             content: Text('Operação realizada com sucesso'),
           ));
-        // apos a Tarefa ser salva, as Tarefas sao recuperadas novamente e
-        // o aplicativo apresenta novamenta a tela de lista de Tarefas
+
         Navigator.pop(context);
         ref.read(tasksProvider.notifier).buscarTarefas();
         Navigator.pop(context);
@@ -60,7 +59,15 @@ class TasksEditView extends ConsumerWidget {
     });
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Editar Tarefa'),
+        title: const Text(
+          'Editar Tarefa',
+          style: TextStyle(fontWeight: FontWeight.w500, color: Colors.white),
+        ),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [Color(0xffB81736), Color(0xff281737)])),
+        ),
       ),
       body: _Content(task),
     );
@@ -143,14 +150,13 @@ class _TaskForm extends StatelessWidget {
                 },
                 onFieldSubmitted: (String value) {
                   if (_formKey.currentState!.validate()) {
-                    //fechar teclado
                     FocusScope.of(context).unfocus();
                     ref.read(tasksProvider.notifier).salvarTarefa(task?.id,
                         _titleController.text, _contentController.text);
                   }
                 },
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value){
+                validator: (value) {
                   if (state is Validating) {
                     if (state.conteudoMessage == '') {
                       return null;
@@ -167,24 +173,45 @@ class _TaskForm extends StatelessWidget {
                 width: double.infinity,
                 child: Consumer(builder: (context, ref, child) {
                   final state = ref.watch(validatorProvider);
-                  return ElevatedButton(
-                    onPressed: state is Validated
-                        ? () {
-                            if (_formKey.currentState!.validate()) {
-                              //fechar teclado
-                              FocusScope.of(context).unfocus();
-                              ref.read(tasksProvider.notifier).salvarTarefa(
-                                  task?.id,
-                                  _titleController.text,
-                                  _contentController.text);
+                  return Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Color(0xffB81736), Color(0xff281737)],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: ElevatedButton(
+                      onPressed: state is Validated
+                          ? () {
+                              if (_formKey.currentState!.validate()) {
+                                FocusScope.of(context).unfocus();
+                                ref.read(tasksProvider.notifier).salvarTarefa(
+                                    task?.id,
+                                    _titleController.text,
+                                    _contentController.text);
+                              }
                             }
-                          }
-                        : null,
-                    child: Text('Salvar'),
+                          : null,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        shadowColor: Colors.transparent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        padding: EdgeInsets.zero,
+                      ),
+                      child: Text(
+                        'Salvar',
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w500),
+                      ),
+                    ),
                   );
                 }),
               ),
-            ),
+            )
           ],
         ),
       ),
