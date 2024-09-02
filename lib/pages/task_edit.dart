@@ -139,7 +139,7 @@ class _TaskForm extends StatelessWidget {
               final state = ref.watch(validatorProvider);
               return TextFormField(
                 decoration: InputDecoration(
-                  labelText: 'Conteúdo',
+                  labelText: 'Descrição',
                 ),
                 controller: _contentController,
                 focusNode: _contentFocusNode,
