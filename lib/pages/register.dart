@@ -106,18 +106,6 @@ class RegisterPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        'Esqueci a senha',
-                        style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xff281737),
-                        ),
-                      ),
-                    ),
                     SizedBox(height: 30),
                     GestureDetector(
                       onTap: () {
@@ -149,7 +137,7 @@ class RegisterPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 50),
+                    SizedBox(height: 100),
                     Align(
                       alignment: Alignment.bottomRight,
                       child: Text(
